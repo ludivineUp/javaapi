@@ -1,0 +1,9 @@
+DAO Pattern
+
+Lien entre les objets et les tables
+
+Entité = classe qui fait référence au table
+
+EntityManagerFactory : qui va fournir les bons repo, singleton
+
+Repo : interface et x classes l'implémentant :  sql puis nosql

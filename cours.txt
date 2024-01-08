@@ -17,6 +17,10 @@ Monde du Java
 
 Jersey : api avec une entité sans repo ni service
 
+Philosophie de Spring (qui vient du pattern DataAccessObject)
+Toutes classes qui fait du traitement (appel à la base, service, etc...) doit implémenter une interface => équivalent List<> l = new ArrayList();
+=> maintenance du code même si l'écriture devient beaucoup plus longue
+
 Architecture API Spring
 Packages
 	entities : données
@@ -29,6 +33,8 @@ Packages
 	controllers : déclare les routes et récupère les données des services
 		Réponse HTTP dite "sale" vs les "propres"
 	config : configuration de sécurité de l'appli
+
+
 
 Gestion des erreurs avec spring
 
