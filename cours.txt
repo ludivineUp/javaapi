@@ -1,0 +1,18 @@
+Un peu de théorie puis le projet à rendre vendredi
+cours : selon l'avancement
+Projet : étapes à valider avant de continuer
+
+Stateful et stateless
+En lien avec la session HTTP (zone mémoire partagée entre le serveur et le client, unique à chaque client)
+Stateful (avant les API) : on stocke le fait que le client est connecté dans la session et on passe apr la session pour envoyer les informations au clients
+	Servlet : en java la classe qui gère les appels avec le protocole (spring génère ces servlets à partir de votre code)
+Stateless : on ne sert jamais de la session HTTP => API, auth principalement par JWT
+	Beaucoup utilisé en archi microservice (on découpe notre appli en plein de petites applis, utilisé pour uen meilleur gestion de la scalabité)
+	
+
+Monde du Java
+	Version officielle Jakarta : lib Jersey (beurk)
+	Version Spring
+	Spring qui guide les évolutions de Jakarta et non pas l'inverse
+
+Jersey : api avec une entité sans repo ni service
