@@ -16,3 +16,28 @@ Monde du Java
 	Spring qui guide les évolutions de Jakarta et non pas l'inverse
 
 Jersey : api avec une entité sans repo ni service
+
+Architecture API Spring
+Packages
+	entities : données
+		Spring Data équivalent JPA ou Hibernate
+	repositories : requête à la DB
+		Merci spring de tout générer facilement
+		on peut aussi faire nos propres requêtes
+		on peut aussi faire le repo en classe et non interface (démo, pas demandé dans le projet)
+	services : récupère les données et fait les calculs/transfomation nécessaire
+	controllers : déclare les routes et récupère les données des services
+		Réponse HTTP dite "sale" vs les "propres"
+	config : configuration de sécurité de l'appli
+
+Gestion des erreurs avec spring
+
+Documentation de l'API
+
+Tests unitaires
+
+Tests des routes
+
+Rôles et permissions
+
+Si on le temps, spring reactive
