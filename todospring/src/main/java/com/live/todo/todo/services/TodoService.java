@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.live.todo.todo.entites.Todo;
+import com.live.todo.todo.entites.dto.TodoDto;
 import com.live.todo.todo.exceptions.NoDataFoundException;
 import com.live.todo.todo.reposotiries.TodoRepository;
 
@@ -28,8 +29,9 @@ public class TodoService {
 		return repo.findById(id).orElseThrow(() -> new NoDataFoundException("pas de todo avec l'id "+id));
 	}
 	
-	public Todo create(Todo todo) {
-		repo.save(todo);
+	public TodoDto create(TodoDto todo) {
+		Todo td = new Todo(todo);
+		repo.save(td);
 		return todo;
 	}
 

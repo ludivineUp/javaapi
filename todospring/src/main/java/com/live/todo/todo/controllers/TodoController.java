@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.live.todo.todo.entites.Todo;
+import com.live.todo.todo.entites.dto.TodoDto;
 import com.live.todo.todo.services.TodoService;
 
 @RestController("api/todo")
@@ -46,7 +47,7 @@ public class TodoController {
 	
 	// save
 	@PostMapping("")
-	public ResponseEntity<Todo> add(@RequestBody Todo todo){
+	public ResponseEntity<TodoDto> add(@RequestBody TodoDto todo){
 		return ResponseEntity.ok().body(service.create(todo));		
 	}
 }

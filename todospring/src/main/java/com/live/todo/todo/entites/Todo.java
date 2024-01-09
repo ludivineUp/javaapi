@@ -1,5 +1,7 @@
 package com.live.todo.todo.entites;
 
+import com.live.todo.todo.entites.dto.TodoDto;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,6 +40,10 @@ public class Todo {
 	private User user;
 	
 	public Todo() {}
+
+	public Todo(TodoDto todo2) {
+		this.todo = todo2.getTodo();
+	}
 
 	public int getId() {
 		return id;
