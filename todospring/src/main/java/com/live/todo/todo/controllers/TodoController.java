@@ -32,8 +32,9 @@ public class TodoController {
 	// response entité nous donne la main sur le réponse HTTP : code, status, header
 	@GetMapping("/all")
 	public ResponseEntity<List<Todo>> get(){
-		if(service.get() == null)
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+		// on supprime grâce à la gestion des erreurs le if
+		//if(service.get() == null)
+		//	return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 		return ResponseEntity.ok().body(service.get());
 	}
 

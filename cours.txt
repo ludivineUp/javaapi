@@ -34,10 +34,21 @@ Packages
 		Réponse HTTP dite "sale" vs les "propres"
 	config : configuration de sécurité de l'appli
 
-
-
 Gestion des erreurs avec spring
+Exception de Java et de spring => problème de code, on les laisse tranquille
+Exception business : ex Pas de données trouvés
+	Création nos propres exception
+	Création un gestionnaire d'exception de spring : si exception, il retourne la bonne reponse http
+	On lance l'exception dans le service pour ne pas changer le controlleur
+		le controlleur est exposé => moisn d'info possible dans le controlleur
+		chaque méthode deux lignes : juste le return ResponseEntity
+	Warning : les exceptions peuvent être gérées dans les controlleurs
 
+DTO : le fait d'envoyer des objet différents des entités dans le controlleur
+	but : réduire les attributs de classes
+	Obligatoire : pour les utilisateurs loggés
+	bonne pratique pour "cacher" les entités aux autres programmes
+	
 Documentation de l'API
 
 Tests unitaires
