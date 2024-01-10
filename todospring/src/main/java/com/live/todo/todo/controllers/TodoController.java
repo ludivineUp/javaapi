@@ -17,7 +17,14 @@ import com.live.todo.todo.entites.Todo;
 import com.live.todo.todo.entites.dto.TodoDto;
 import com.live.todo.todo.services.TodoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController("api/todo")
+@Tag(name = "toto controlleur", description = "the todo API")
 public class TodoController {
 	
 	@Autowired
@@ -32,6 +39,11 @@ public class TodoController {
 	// une route propre
 	// response entité nous donne la main sur le réponse HTTP : code, status, header
 	@GetMapping("/all")
+	@Operation(summary = "toutes les todo", description = "all todo") 
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "201", description = "get all todo"),
+		@ApiResponse(responseCode = "404", description = "no todo found"),
+	}) 
 	public ResponseEntity<List<Todo>> get(){
 		// on supprime grâce à la gestion des erreurs le if
 		//if(service.get() == null)
@@ -41,12 +53,14 @@ public class TodoController {
 
 	// récupérer un paramètre de l'url
 	@GetMapping("/{id}")
-	public ResponseEntity<Todo> get(@PathVariable("id") int id){
+	@Operation(summary = "une todo", description = "one todo")
+	public ResponseEntity<Todo> get(@PathVariable("id") @Parameter(description = "id of the todo")int id){
 		return ResponseEntity.ok().body(service.get(id));		
 	}
 	
 	// save
 	@PostMapping("")
+	@Operation(summary = "add todo", description = "add todo")
 	public ResponseEntity<TodoDto> add(@RequestBody TodoDto todo){
 		return ResponseEntity.ok().body(service.create(todo));		
 	}

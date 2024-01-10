@@ -2,6 +2,7 @@ package com.live.todo.todo.entites;
 
 import com.live.todo.todo.entites.dto.TodoDto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,9 +28,11 @@ public class Todo {
 	// autoincrement
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "idtodo")
+	@Schema(description = "id du todp", example = "1", required = false)
 	private int id;
 	
 	@Column(name = "todotext")
+	@Schema(description = "tâche à faire", example = "vaisselle", required = true)
 	private String todo;
 	
 	// une relation n à 1

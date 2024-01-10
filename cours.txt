@@ -49,7 +49,63 @@ DTO : le fait d'envoyer des objet différents des entités dans le controlleur
 	Obligatoire : pour les utilisateurs loggés
 	bonne pratique pour "cacher" les entités aux autres programmes
 	
-Documentation de l'API
+Documentation de l'API : openapi et swagger
+le front est généré automatiquement :)
+on doit juste annoter notre code
+Dépendance
+ <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.3.0</version>
+   </dependency>
+
+Configurer la doc application.properties
+# url de votre doc
+springdoc.api-docs.path=/doc
+# accepter l'introspection de code
+spring.main.allow-circular-references=true
+
+Configurer swagger
+@EnableWebMvc
+@Configuration
+public class Config implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/META-INF/resources/swagger-ui.html");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+    }
+
+    @Bean
+    public InternalResourceViewResolver defaultViewResolver() {
+        return new InternalResourceViewResolver();
+    }
+
+}
+
+Annotations pour générer la doc
+Sur la classe contenant le main
+	@OpenAPIDefinition(info = @Info(title = "Book API", version = "1.0", description = "Book Information
+Sur les attributs des entités ou dto 
+	@Schema(description = "description", example = "one example”, required = true) pour chaque attribut
+Sur les controlleurs
+	sur la classe @Tag(name = "book", description = "the book API")
+	pour chaque route
+		@Operation(summary = "View a list of available products", description = "toto") pour une route, sa description
+		@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "toto"),
+			@ApiResponse(responseCode = "200", description = "Successfully retrieve"),
+		}
+	) 
+	et plour chaque@@PathVariable: @Parameter(description = "id of the books")
+
+Accéder à la doc
+http://localhost:8080/swagger-ui/index.html et mettre /doc dans l'input
 
 Tests unitaires
 
