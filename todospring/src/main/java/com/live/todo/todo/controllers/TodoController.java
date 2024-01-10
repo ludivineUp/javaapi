@@ -3,6 +3,8 @@ package com.live.todo.todo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController("api/todo")
 @Tag(name = "toto controlleur", description = "the todo API")
-public class TodoController {
+public class TodoController implements HealthIndicator{
 	
 	@Autowired
 	private TodoService service;
@@ -63,5 +65,11 @@ public class TodoController {
 	@Operation(summary = "add todo", description = "add todo")
 	public ResponseEntity<TodoDto> add(@RequestBody TodoDto todo){
 		return ResponseEntity.ok().body(service.create(todo));		
+	}
+
+	@Override
+	public Health health() {
+		// TODO Auto-generated method stub
+		return service != null ? Health.up().build() : Health.down().build();
 	}
 }
