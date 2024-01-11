@@ -72,5 +72,9 @@ public class Todo {
 		this.user = user;
 	}
 	
+	public double calculTVA(double ht) {
+		return ht * 1.2;
+	}
+	
 	
 }
